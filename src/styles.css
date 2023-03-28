@@ -1,0 +1,66 @@
+:root {
+  --percent: 50;
+  --progress-text-top: 9px;
+  --border-radius: 4px;
+  --primary-background: #5b7cfd;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.progress {
+  width: 500px;
+  height: 6px;
+  background: #e5e6eb;
+  position: relative;
+  border-radius: var(--border-radius);
+}
+
+.progress-inner {
+  border-radius: var(--border-radius);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(1% * var(--percent));
+  background: var(--primary-background);
+}
+
+.progress-inner::before {
+  counter-reset: progress var(--percent);
+  content: counter(progress) "%";
+  display: block;
+  height: 24px;
+  padding: 0 8px;
+  background: var(--primary-background);
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, calc(-100% - 4px - var(--progress-text-top)));
+  color: white;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.progress-inner::after {
+  content: "";
+  height: 0;
+  width: 0;
+  border: 4px solid transparent;
+  border-bottom: none;
+  border-top-color: var(--primary-background);
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, calc(-100% - var(--progress-text-top)));
+}
+
+.button-group {
+  margin-top: 24px;
+}
